@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Cat Pictures</title>
+  </head>
+  <body onload="getPic()">
+    <div
+      style="
+        width: 60%;
+        margin: 0 auto;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+      "
+    >
+      <h1>Random Cat Pictures</h1>
+      <h2>Click anywhere to load another cat picture <3</h2>
+      <img width="50%" />
+    </div>
+    <footer style="text-align: center; display: sticky">
+      <h6>Made by Koftov 2020</h6>
+    </footer>
+    <script>
+      const loading = document.getElementsByTagName("h1")[0];
+      const img = document.getElementsByTagName("img")[0];
+      const button = document.getElementsByTagName("button")[0];
+      const getPic = async () => {
+        img.src =
+          "https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif";
+        const res = await fetch("https://aws.random.cat/meow");
+        const { file } = await res.json();
+        img.src = file;
+      };
+      document.addEventListener("click", getPic);
+    </script>
+  </body>
+</html>
